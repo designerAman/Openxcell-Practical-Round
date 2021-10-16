@@ -12,25 +12,24 @@ module.exports = function makeVerifyUserAccessToken({
       }
 
       const userDetails = (await accessTokenDb.searchAccessTokenDetails({
-        attributes: ['id', 'name', 'email'],
+        attributes: ['id', 'name', 'email', 'accessToken'],
         joins: {
           users: {
             type: 'INNER',
-            on: 'accessTokens.userId = user.id',
+            on: 'accessTokens.userId = users.id',
           }
         },
         filterQuery: {
-          token: {
+          accessToken: {
             values: [token],
           },
         },
       }))[0];
 
-      if (!tokenData) {
+      if (!userDetails) {
         throw new AuthorizationError('Invalid access token');
       }
 
-      user.accesstoken = token;
       req.userDetails = userDetails;
       return next();
     } catch (error) {

@@ -1,7 +1,8 @@
-module.exports = function makeApiRoutes({ app, controllers }) {
+module.exports = function makeApiRoutes({ app, controllers, middleware }) {
 
   initTestRoutes();
   initRegistrationAndProfileRoutes();
+  initTopicAndPostRoutes();
 
   function initTestRoutes() {
     app
@@ -20,6 +21,15 @@ module.exports = function makeApiRoutes({ app, controllers }) {
       .route("/user/login")
       .post(
         controllers.registrationAndProfile.loginAction,
+      );
+  }
+
+  function initTopicAndPostRoutes() {
+    app
+      .route("/topic")
+      .post(
+        middleware.verifyUserAccessToken,
+        controllers.topicAndPost.createTopicAction,
       );
   }
 };

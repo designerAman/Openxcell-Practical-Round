@@ -23,8 +23,12 @@ const userDb = makeUserDb({ mysql });
 const makeAccessTokenDb = require('./access-token.db');
 const accessTokenDb = makeAccessTokenDb({ mysql });
 
+const makeTopicDb = require('./topic.db');
+const topicDb = makeTopicDb({ mysql });
+
 module.exports = Object.freeze({
   testDb,
   userDb,
   accessTokenDb,
+  topicDb,
 });

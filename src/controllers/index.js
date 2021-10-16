@@ -8,8 +8,10 @@ const testMessageAction = makeTestMessageAction({
 });
 
 const registrationAndProfileActions = require("./registration-and-profile");
+const topicAndPostActions = require("./topic-and-post");
 
 module.exports = Object.freeze({
   testMessageAction,
   registrationAndProfile: registrationAndProfileActions,
+  topicAndPost: topicAndPostActions,
 });

@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const controllers = require("./controllers");
+const middleware = require("./middlewares");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,6 +15,7 @@ const makeApiRoutes = require("./rest-service");
 makeApiRoutes({
   app,
   controllers,
+  middleware,
 });
 
 app.listen(PORT, () => {
