@@ -20,7 +20,11 @@ const testDb = makeTestDb({ mysql });
 const makeUserDb = require('./user.db');
 const userDb = makeUserDb({ mysql });
 
+const makeAccessTokenDb = require('./access-token.db');
+const accessTokenDb = makeAccessTokenDb({ mysql });
+
 module.exports = Object.freeze({
   testDb,
   userDb,
+  accessTokenDb,
 });

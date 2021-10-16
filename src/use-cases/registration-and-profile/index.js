@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const momentTZ = require('moment-timezone');
+const uuid = require('uuid');
 
 const DB = require('../../data-access');
 const exceptions = require('../../exceptions');
@@ -17,6 +18,19 @@ const register = makeRegister({
   AlreadyExistsError: exceptions.AlreadyExistsError,
 });
 
+const makeLogin = require('./login');
+const login = makeLogin({
+  Joi,
+  uuid,
+  userDb: DB.userDb,
+  accessTokenDb: DB.accessTokenDb,
+  verifyHashedString: sharedFunctions.verifyHashedString,
+  ValidationError: exceptions.ValidationError,
+  NotFoundError: exceptions.NotFoundError,
+  AuthorizationError: exceptions.AuthorizationError,
+});
+
 module.exports = Object.freeze({
   register,
+  login,
 });

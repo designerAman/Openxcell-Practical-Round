@@ -10,6 +10,14 @@ const registerAction = makeRegisterAction({
   handleError,
 });
 
+const makeLoginAction = require('./login');
+const loginAction = makeLoginAction({
+  chalk,
+  login: registrationAndProfileUseCases.login,
+  handleError,
+});
+
 module.exports = Object.freeze({
   registerAction,
+  loginAction,
 });

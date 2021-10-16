@@ -15,5 +15,11 @@ module.exports = function makeApiRoutes({ app, controllers }) {
       .post(
         controllers.registrationAndProfile.registerAction,
       );
+
+    app
+      .route("/user/login")
+      .post(
+        controllers.registrationAndProfile.loginAction,
+      );
   }
 };

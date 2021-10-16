@@ -14,8 +14,14 @@ const sendEmail = makeSendEmail({
   nodemailer,
 });
 
+const makeVerifyHashedString = require("./verify-hashed-string");
+const verifyHashedString = makeVerifyHashedString({
+  bcrypt
+});
+
 module.exports = Object.freeze({
   validatePassword,
   createStringHash,
   sendEmail,
+  verifyHashedString,
 });
