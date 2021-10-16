@@ -1,5 +1,4 @@
 const MYSQL = require("mysql2");
-const chalk = require("chalk");
 
 const config = require("../config/environments");
 
@@ -18,6 +17,10 @@ mysql = mysql.promise();
 const makeTestDb = require('./test.db');
 const testDb = makeTestDb({ mysql });
 
+const makeUserDb = require('./user.db');
+const userDb = makeUserDb({ mysql });
+
 module.exports = Object.freeze({
   testDb,
+  userDb,
 });

@@ -7,6 +7,9 @@ const testMessageAction = makeTestMessageAction({
   handleError,
 });
 
+const registrationAndProfileActions = require("./registration-and-profile");
+
 module.exports = Object.freeze({
   testMessageAction,
+  registrationAndProfile: registrationAndProfileActions,
 });
