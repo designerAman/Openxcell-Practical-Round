@@ -31,5 +31,17 @@ module.exports = function makeApiRoutes({ app, controllers, middleware }) {
         middleware.verifyUserAccessToken,
         controllers.topicAndPost.createTopicAction,
       );
+
+    app
+      .route("/topic/:id/post")
+      .post(
+        middleware.verifyUserAccessToken,
+        middleware.uploadImages.fields([
+          {
+            name: 'postImages',
+          }
+        ]),
+        controllers.topicAndPost.createPostAction,
+      );
   }
 };

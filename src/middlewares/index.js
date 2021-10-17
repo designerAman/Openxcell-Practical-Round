@@ -1,6 +1,9 @@
 const chalk = require('chalk');
+const multer = require('multer');
 
 const handleError = require('../controllers/handle-error');
+
+const config = require('../config/environments');
 const DB = require('../data-access');
 const exceptions = require('../exceptions');
 
@@ -12,6 +15,13 @@ const verifyUserAccessToken = makeVerifyUserAccessToken({
   handleError,
 });
 
+const makeUploadImages = require('./upload-images');
+const uploadImages = makeUploadImages({
+  config,
+  multer,
+})
+
 module.exports = Object.freeze({
   verifyUserAccessToken,
+  uploadImages,
 });

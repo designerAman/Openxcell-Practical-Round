@@ -13,6 +13,17 @@ const createTopic = makeCreateTopic({
   AlreadyExistsError: exceptions.AlreadyExistsError,
 });
 
+const makeCreatePost = require('./create-post');
+const createPost = makeCreatePost({
+  Joi,
+  momentTZ,
+  postDb: DB.postDb,
+  topicDb: DB.topicDb,
+  ValidationError: exceptions.ValidationError,
+  NotFoundError: exceptions.NotFoundError,
+});
+
 module.exports = Object.freeze({
   createTopic,
+  createPost,
 });
