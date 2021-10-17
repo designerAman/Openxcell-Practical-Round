@@ -6,7 +6,7 @@ module.exports = function makeTopicDb({ mysql }) {
     addTopic,
   });
 
-  function generateSearchTopicDetailQuery({ attributes, filterQuery, operator, joins }) {
+  function generateSearchTopicDetailQuery({ attributes, filterQuery, operator, joins, from, to }) {
     let query = `SELECT ${attributes.join(',')} FROM ${TABLE_NAME}`;
     const values = [];
     const whereClause = [];
@@ -42,11 +42,19 @@ module.exports = function makeTopicDb({ mysql }) {
       query += whereClause.length > 1 ? ` WHERE ${whereClause.join(' ' + operator + ' ')}` : ` WHERE ${whereClause[0]}`;
     }
 
+    console.log(from, to, `${from}` & `${to}`);
+
+    if(`${from}` && `${to}`) {
+      query += ` LIMIT ${from}, ${to}`
+    }
+
     return { query, values };
   }
 
-  async function searchTopicDetails({ attributes, filterQuery, operator, joins }) {
-    const { query, values } = generateSearchTopicDetailQuery({ attributes, filterQuery, operator, joins });
+  async function searchTopicDetails({ attributes, filterQuery, operator, joins, from, to}) {
+    const { query, values } = generateSearchTopicDetailQuery({ attributes, filterQuery, operator, joins, from, to });
+
+    console.log({query});
     const [rows] = await mysql.query(query, values);
 
     return rows;

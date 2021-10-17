@@ -23,7 +23,15 @@ const createPost = makeCreatePost({
   NotFoundError: exceptions.NotFoundError,
 });
 
+const makeGetTopics = require('./get-topics');
+const getTopics = makeGetTopics({
+  Joi,
+  topicDb: DB.topicDb,
+  ValidationError: exceptions.ValidationError,
+});
+
 module.exports = Object.freeze({
   createTopic,
   createPost,
+  getTopics,
 });

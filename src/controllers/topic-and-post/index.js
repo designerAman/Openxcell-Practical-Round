@@ -19,7 +19,15 @@ const createPostAction = makeCreatePostAction({
   handleError,
 });
 
+const makeGetTopicsAction = require('./get-topics');
+const getTopicsAction = makeGetTopicsAction({
+  chalk,
+  getTopics: topicAndPostUseCases.getTopics,
+  handleError,
+})
+
 module.exports = Object.freeze({
   createTopicAction,
   createPostAction,
+  getTopicsAction,
 });
