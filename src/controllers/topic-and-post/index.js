@@ -33,9 +33,17 @@ const addCommentInPostAction = makeAddCommentInPostAction({
   handleError,
 });
 
+const makeGetPostsAction = require('./get-posts');
+const getPostsAction = makeGetPostsAction({
+  chalk,
+  getPosts: topicAndPostUseCases.getPosts,
+  handleError,
+})
+
 module.exports = Object.freeze({
   createTopicAction,
   createPostAction,
   getTopicsAction,
   addCommentInPostAction,
+  getPostsAction,
 });

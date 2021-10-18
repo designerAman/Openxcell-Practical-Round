@@ -40,9 +40,20 @@ const addCommentInPost = makeAddCommentInPost({
   NotFoundError: exceptions.NotFoundError,
 });
 
+const makeGetPosts = require('./get-posts');
+const getPosts = makeGetPosts({
+  Joi,
+  topicDb: DB.topicDb,
+  postDb: DB.postDb,
+  commentDb: DB.commentDb,
+  ValidationError: exceptions.ValidationError,
+  NotFoundError: exceptions.NotFoundError,
+});
+
 module.exports = Object.freeze({
   createTopic,
   createPost,
   getTopics,
   addCommentInPost,
+  getPosts,
 });

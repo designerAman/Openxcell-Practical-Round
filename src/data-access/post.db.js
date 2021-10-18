@@ -13,7 +13,7 @@ module.exports = function makePostDb({ mysql }) {
     await mysql.query(query, values,);
   }
 
-  function generateSearchPostDetailQuery({ attributes, filterQuery, operator, joins, from, to }) {
+  function generateSearchPostDetailQuery({ attributes, filterQuery, operator, joins, from, to, sortBy }) {
     let query = `SELECT ${attributes.join(',')} FROM ${TABLE_NAME}`;
     const values = [];
     const whereClause = [];
@@ -49,17 +49,21 @@ module.exports = function makePostDb({ mysql }) {
       query += whereClause.length > 1 ? ` WHERE ${whereClause.join(' ' + operator + ' ')}` : ` WHERE ${whereClause[0]}`;
     }
 
-    if(Number.isInteger(from) && Number.isInteger(to)) {
+    if (Number.isInteger(from) && Number.isInteger(to)) {
       query += ` LIMIT ${from}, ${to}`
+    }
+
+    if (sortBy) {
+      query += ` ORDER BY ${sortBy}`;
     }
 
     return { query, values };
   }
 
-  async function searchPostDetails({ attributes, filterQuery, operator, joins, from, to}) {
-    const { query, values } = generateSearchPostDetailQuery({ attributes, filterQuery, operator, joins, from, to });
+  async function searchPostDetails({ attributes, filterQuery, operator, joins, from, to, sortBy }) {
+    const { query, values } = generateSearchPostDetailQuery({ attributes, filterQuery, operator, joins, from, to, sortBy });
 
-    console.log({query});
+    console.log({ query });
     const [rows] = await mysql.query(query, values);
 
     return rows;

@@ -57,5 +57,12 @@ module.exports = function makeApiRoutes({ app, controllers, middleware }) {
         middleware.verifyUserAccessToken,
         controllers.topicAndPost.addCommentInPostAction,
       );
+
+    app
+      .route("/topics/:id/posts")
+      .get(
+        middleware.verifyUserAccessToken,
+        controllers.topicAndPost.getPostsAction,
+      );
   }
 };
