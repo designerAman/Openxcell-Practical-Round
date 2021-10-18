@@ -30,8 +30,19 @@ const getTopics = makeGetTopics({
   ValidationError: exceptions.ValidationError,
 });
 
+const makeAddCommentInPost = require('./add-comment-in-post');
+const addCommentInPost = makeAddCommentInPost({
+  Joi,
+  momentTZ,
+  postDb: DB.postDb,
+  commentDb: DB.commentDb,
+  ValidationError: exceptions.ValidationError,
+  NotFoundError: exceptions.NotFoundError,
+});
+
 module.exports = Object.freeze({
   createTopic,
   createPost,
   getTopics,
+  addCommentInPost,
 });

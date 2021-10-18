@@ -24,10 +24,18 @@ const getTopicsAction = makeGetTopicsAction({
   chalk,
   getTopics: topicAndPostUseCases.getTopics,
   handleError,
-})
+});
+
+const makeAddCommentInPostAction = require('./add-comment-in-post');
+const addCommentInPostAction = makeAddCommentInPostAction({
+  chalk,
+  addCommentInPost: topicAndPostUseCases.addCommentInPost,
+  handleError,
+});
 
 module.exports = Object.freeze({
   createTopicAction,
   createPostAction,
   getTopicsAction,
+  addCommentInPostAction,
 });

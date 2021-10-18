@@ -29,10 +29,14 @@ const topicDb = makeTopicDb({ mysql });
 const makePostDb = require('./post.db');
 const postDb = makePostDb({ mysql });
 
+const makeCommentDb = require('./comment.db');
+const commentDb = makeCommentDb({ mysql });
+
 module.exports = Object.freeze({
   testDb,
   userDb,
   accessTokenDb,
   topicDb,
   postDb,
+  commentDb,
 });

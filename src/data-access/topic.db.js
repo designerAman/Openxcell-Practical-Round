@@ -42,9 +42,7 @@ module.exports = function makeTopicDb({ mysql }) {
       query += whereClause.length > 1 ? ` WHERE ${whereClause.join(' ' + operator + ' ')}` : ` WHERE ${whereClause[0]}`;
     }
 
-    console.log(from, to, `${from}` & `${to}`);
-
-    if(`${from}` && `${to}`) {
+    if(Number.isInteger(from) && Number.isInteger(to)) {
       query += ` LIMIT ${from}, ${to}`
     }
 
