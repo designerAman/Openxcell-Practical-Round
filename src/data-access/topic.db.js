@@ -52,7 +52,6 @@ module.exports = function makeTopicDb({ mysql }) {
   async function searchTopicDetails({ attributes, filterQuery, operator, joins, from, to}) {
     const { query, values } = generateSearchTopicDetailQuery({ attributes, filterQuery, operator, joins, from, to });
 
-    console.log({query});
     const [rows] = await mysql.query(query, values);
 
     return rows;

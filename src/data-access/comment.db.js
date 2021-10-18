@@ -63,7 +63,6 @@ module.exports = function makeCommentDb({ mysql }) {
   async function searchCommentDetails({ attributes, filterQuery, operator, joins, from, to, sortBy}) {
     const { query, values } = generateSearchCommentDetailQuery({ attributes, filterQuery, operator, joins, from, to, sortBy });
 
-    console.log({query});
     const [rows] = await mysql.query(query, values);
 
     return rows;

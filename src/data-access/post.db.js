@@ -63,7 +63,6 @@ module.exports = function makePostDb({ mysql }) {
   async function searchPostDetails({ attributes, filterQuery, operator, joins, from, to, sortBy }) {
     const { query, values } = generateSearchPostDetailQuery({ attributes, filterQuery, operator, joins, from, to, sortBy });
 
-    console.log({ query });
     const [rows] = await mysql.query(query, values);
 
     return rows;
